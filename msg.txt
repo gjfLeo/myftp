@@ -1,0 +1,22 @@
+client          server
+    >   LOGIN (username)
+     <  SUCCESS
+
+客户端：
+发送LOGIN（用户名），等待回复
+    接收SUCCESS：用户名正确
+        发送LOGIN（密码）， 等待回复
+            接收SUCCESS：密码正确，登录成功
+            接收FAILURE：密码错误
+    接收FAILURE：用户名错误
+
+
+
+
+服务器：等待接收
+接收LOGIN
+    用户名正确：发送SUCCESS，等待回复
+        接收LOGIN
+            密码正确：发送SUCCESS，等待下条消息
+            密码错误：发送FAILURE，等待下条消息
+    用户名错误：发送FAILURE，等待下条消息
